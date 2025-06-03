@@ -1,0 +1,1 @@
+practica para conectar jira con mi repositorio
