@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipo de Desarrollo - Gestión de Software</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        min-height: 100vh;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      .background-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .floating-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .floating-shape:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        border-radius: 50%;
+        animation-delay: 0s;
+      }
+
+      .floating-shape:nth-child(2) {
+        top: 20%;
+        right: 15%;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #48cae4, #023e8a);
+        border-radius: 30%;
+        animation-delay: 2s;
+      }
+
+      .floating-shape:nth-child(3) {
+        bottom: 30%;
+        left: 20%;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #f72585, #b5179e);
+        border-radius: 25%;
+        animation-delay: 4s;
+      }
+
+      .floating-shape:nth-child(4) {
+        bottom: 10%;
+        right: 10%;
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(45deg, #43aa8b, #90e0ef);
+        border-radius: 50%;
+        animation-delay: 6s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg) scale(1);
+        }
+        25% {
+          transform: translateY(-20px) rotate(90deg) scale(1.1);
+        }
+        50% {
+          transform: translateY(-40px) rotate(180deg) scale(0.9);
+        }
+        75% {
+          transform: translateY(-20px) rotate(270deg) scale(1.1);
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 60px;
+        animation: slideDown 1s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .team-name {
+        font-size: 3.5em;
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff, #f8f9fa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        letter-spacing: -2px;
+      }
+
+      .team-subtitle {
+        font-size: 1.4em;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 300;
+        margin-bottom: 30px;
+      }
+
+      .team-description {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        font-size: 1.1em;
+        line-height: 1.6;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .members-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .member-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 35px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.8s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .member-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .member-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .member-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .member-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .member-card:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .member-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .member-card:hover::before {
+        left: 100%;
+      }
+
+      .member-card:hover {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        background: rgba(255, 255, 255, 1);
+      }
+
+      .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 25px;
+        position: relative;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+        border: 4px solid white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .member-card:hover .avatar {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .member-name {
+        font-size: 1.5em;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .member-role {
+        color: #7f8c8d;
+        font-size: 1em;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      .view-profile-btn {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .view-profile-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        background: linear-gradient(135deg, #764ba2, #667eea);
+      }
+
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        padding: 20px;
+        background: rgba(102, 126, 234, 0.1);
+        border-radius: 15px;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      .stat-label {
+        font-size: 0.9em;
+        color: #7f8c8d;
+        margin-top: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .team-name {
+          font-size: 2.5em;
+        }
+
+        .members-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .member-card {
+          padding: 25px;
+        }
+
+        .avatar {
+          width: 100px;
+          height: 100px;
+          font-size: 30px;
+        }
+
+        .container {
+          padding: 20px 10px;
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-animation">
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <h1 class="team-name">DevTeam Elite</h1>
+        <p class="team-subtitle">Desarrollo y Gestión de Software</p>
+        <div class="team-description">
+          <p>
+            Somos un equipo apasionado de desarrolladores especializados en la
+            creación de soluciones innovadoras. Combinamos experiencia técnica
+            con creatividad para entregar proyectos de alta calidad que superan
+            las expectativas.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Miembros</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">100</div>
+            <div class="stat-label">Compromiso</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Creatividad</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="members-grid">
+        <!-- Alan Manuel Benítez García -->
+        <div class="member-card pulse" onclick="openProfile('Alan9B.html')">
+          <div class="avatar">
+            <img
+              src="alanyagami.jpg"
+              alt="Alan Manuel Benítez García"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+              "
+            />
+          </div>
+          <h3 class="member-name">Alan Manuel Benítez García</h3>
+          <p class="member-role">Desarrollador Full Stack</p>
+          <button class="view-profile-btn">Ver Perfil</button>
+        </div>
+
+        <!-- Miembro 2 - Placeholder -->
+        <div class="member-card" onclick="openProfile('miembro2-profile.html')">
+          <div class="avatar">M2</div>
+          <h3 class="member-name">Nombre Completo 2</h3>
+          <p class="member-role">Frontend Developer</p>
+          <button class="view-profile-btn">Ver Perfil</button>
+        </div>
+
+        <!-- Miembro 3 - Placeholder -->
+        <div class="member-card" onclick="openProfile('miembro3-profile.html')">
+          <div class="avatar">M3</div>
+          <h3 class="member-name">Nombre Completo 3</h3>
+          <p class="member-role">Backend Developer</p>
+          <button class="view-profile-btn">Ver Perfil</button>
+        </div>
+
+        <!-- Miembro 4 - Placeholder -->
+        <div class="member-card" onclick="openProfile('miembro4-profile.html')">
+          <div class="avatar">M4</div>
+          <h3 class="member-name">Nombre Completo 4</h3>
+          <p class="member-role">UI/UX Designer</p>
+          <button class="view-profile-btn">Ver Perfil</button>
+        </div>
+
+        <!-- Miembro 5 - Placeholder -->
+        <div class="member-card" onclick="openProfile('miembro5-profile.html')">
+          <div class="avatar">M5</div>
+          <h3 class="member-name">Nombre Completo 5</h3>
+          <p class="member-role">Project Manager</p>
+          <button class="view-profile-btn">Ver Perfil</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openProfile(profileUrl) {
+        // Efecto de clic con partículas
+        createClickEffect(event);
+
+        // Pequeño delay para el efecto visual
+        setTimeout(() => {
+          window.location.href = profileUrl;
+        }, 200);
+      }
+
+      function createClickEffect(e) {
+        const ripple = document.createElement("div");
+        const rect = e.currentTarget.getBoundingClientRect();
+        const size = 50;
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+        ripple.style.position = "absolute";
+        ripple.style.background = "rgba(102, 126, 234, 0.6)";
+        ripple.style.borderRadius = "50%";
+        ripple.style.transform = "scale(0)";
+        ripple.style.animation = "ripple 0.6s linear";
+        ripple.style.pointerEvents = "none";
+
+        e.currentTarget.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      }
+
+      // Agregar estilos de animación para el efecto ripple
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Efecto de mouse seguidor
+      document.addEventListener("mousemove", (e) => {
+        const cursor = document.querySelector(".cursor");
+        if (!cursor) {
+          const newCursor = document.createElement("div");
+          newCursor.className = "cursor";
+          newCursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: rgba(102, 126, 234, 0.5);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    transition: transform 0.1s ease;
+                `;
+          document.body.appendChild(newCursor);
+        }
+
+        const cursor_element = document.querySelector(".cursor");
+        cursor_element.style.left = e.clientX - 10 + "px";
+        cursor_element.style.top = e.clientY - 10 + "px";
+      });
+
+      // Animación de contador al cargar
+      window.addEventListener("load", () => {
+        const counters = document.querySelectorAll(".stat-number");
+        counters.forEach((counter) => {
+          const target = counter.innerText;
+          if (target !== "∞") {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                counter.innerText = target;
+                clearInterval(timer);
+              } else {
+                counter.innerText = Math.ceil(current);
+              }
+            }, 50);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
