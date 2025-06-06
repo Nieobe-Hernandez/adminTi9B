@@ -64,9 +64,9 @@ Sistema de notificaciones
 Autores ✒️
 Equipo de Desarrollo - Generación 9B:
 
-Benítez García Alan Manuel - Desarrollo Frontend
-Gonzalez Hernández Juan Diego - Desarrollo Backend
-Hernández Bernal Jaqueline Nieobe - Diseño UI/UX
-Hernández Palma Diego Jesús - Testing y QA
-Villanueva Estrada Leyla Alondra - Documentación y Gestión
+Benítez García Alan Manuel
+Gonzalez Hernández Juan Diego
+Hernández Bernal Jaqueline Nieobe
+Hernández Palma Diego Jesús
+Villanueva Estrada Leyla Alondra
 
