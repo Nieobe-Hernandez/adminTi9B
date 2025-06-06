@@ -422,7 +422,7 @@
         </div>
 
         <!-- Miembro 3 - Placeholder -->
-        <div class="member-card" onclick="openProfile('miembro3-profile.html')">
+        <div class="member-card" onclick="openProfile('./Leyla/Leyla9B.html')">
           <div class="avatar">M3</div>
           <h3 class="member-name">Nombre Completo 3</h3>
           <p class="member-role">Backend Developer</p>
@@ -430,7 +430,7 @@
         </div>
 
         <!-- Miembro 4 - Placeholder -->
-        <div class="member-card" onclick="openProfile('miembro4-profile.html')">
+        <div class="member-card" onclick="openProfile('./Diego/DiegoJesus9B.html')">
           <div class="avatar">M4</div>
           <h3 class="member-name">Nombre Completo 4</h3>
           <p class="member-role">UI/UX Designer</p>
@@ -438,7 +438,7 @@
         </div>
 
         <!-- Miembro 5 - Placeholder -->
-        <div class="member-card" onclick="openProfile('miembro5-profile.html')">
+        <div class="member-card" onclick="openProfile('./Juan/Perfil_JD.html')">
           <div class="avatar">M5</div>
           <h3 class="member-name">Nombre Completo 5</h3>
           <p class="member-role">Project Manager</p>
@@ -449,10 +449,8 @@
 
     <script>
       function openProfile(profileUrl) {
-        // Efecto de clic con partículas
         createClickEffect(event);
 
-        // Pequeño delay para el efecto visual
         setTimeout(() => {
           window.location.href = profileUrl;
         }, 200);
@@ -482,7 +480,6 @@
         }, 600);
       }
 
-      // Agregar estilos de animación para el efecto ripple
       const style = document.createElement("style");
       style.textContent = `
             @keyframes ripple {
@@ -494,7 +491,6 @@
         `;
       document.head.appendChild(style);
 
-      // Efecto de mouse seguidor
       document.addEventListener("mousemove", (e) => {
         const cursor = document.querySelector(".cursor");
         if (!cursor) {
@@ -518,7 +514,6 @@
         cursor_element.style.top = e.clientY - 10 + "px";
       });
 
-      // Animación de contador al cargar
       window.addEventListener("load", () => {
         const counters = document.querySelectorAll(".stat-number");
         counters.forEach((counter) => {
